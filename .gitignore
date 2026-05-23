@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Local properties file containing credentials
+src/main/resources/application-local.properties
