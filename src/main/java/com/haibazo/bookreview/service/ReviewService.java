@@ -11,7 +11,7 @@ public interface ReviewService {
 
     ReviewResponse updateReview(Integer id, ReviewRequest request);
 
-    Page<ReviewResponse> getAllReviews(Pageable pageable);
+    Page<ReviewResponse> getAllReviews(Integer bookId, Pageable pageable);
 
     ReviewResponse getReviewById(Integer id);
 

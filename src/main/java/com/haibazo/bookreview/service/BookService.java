@@ -11,7 +11,7 @@ public interface BookService {
 
     BookResponse updateBook(Integer id, BookRequest request);
 
-    Page<BookResponse> getAllBooks(Pageable pageable);
+    Page<BookResponse> getAllBooks(Integer authorId, Pageable pageable);
 
     BookResponse getBookById(Integer id);
 

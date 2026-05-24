@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.haibazo.bookreview.dto.request.ReviewRequest;
 import com.haibazo.bookreview.dto.response.APIResponse;
 import com.haibazo.bookreview.dto.response.Pagination;
 import com.haibazo.bookreview.dto.response.ReviewResponse;
-import com.haibazo.bookreview.service.ReviewService;
+import com.haibazo.bookreview.service.ReviewService;    
 
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -36,8 +37,10 @@ public class ReviewController {
     ReviewService reviewService;
 
     @GetMapping
-    public ResponseEntity<APIResponse<List<ReviewResponse>>> getAllReviews(Pageable pageable) {
-        Page<ReviewResponse> page = reviewService.getAllReviews(pageable);
+    public ResponseEntity<APIResponse<List<ReviewResponse>>> getAllReviews(
+            @RequestParam(required = false) Integer bookId,
+            Pageable pageable) {
+        Page<ReviewResponse> page = reviewService.getAllReviews(bookId, pageable);
         return ResponseEntity.ok(APIResponse.<List<ReviewResponse>>builder()
                 .success(true)
                 .status(HttpStatus.OK.value())

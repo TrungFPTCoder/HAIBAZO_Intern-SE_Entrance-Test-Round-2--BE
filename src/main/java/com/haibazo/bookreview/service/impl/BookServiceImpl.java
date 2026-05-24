@@ -59,7 +59,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<BookResponse> getAllBooks(Pageable pageable) {
+    public Page<BookResponse> getAllBooks(Integer authorId, Pageable pageable) {
+        if (authorId != null) {
+            return bookRepository.findByAuthorId(authorId, pageable)
+                    .map(this::toResponseWithCount);
+        }
         return bookRepository.findAll(pageable)
                 .map(this::toResponseWithCount);
     }

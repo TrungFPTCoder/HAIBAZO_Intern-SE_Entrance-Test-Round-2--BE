@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.haibazo.bookreview.dto.request.BookRequest;
@@ -36,8 +37,9 @@ public class BookController {
     BookService bookService;
 
     @GetMapping
-    public ResponseEntity<APIResponse<List<BookResponse>>> getAllBooks(Pageable pageable) {
-        Page<BookResponse> page = bookService.getAllBooks(pageable);
+    public ResponseEntity<APIResponse<List<BookResponse>>> getAllBooks(@RequestParam(required = false) Integer authorId,
+            Pageable pageable) {
+        Page<BookResponse> page = bookService.getAllBooks(authorId, pageable);
         return ResponseEntity.ok(APIResponse.<List<BookResponse>>builder()
                 .success(true)
                 .status(HttpStatus.OK.value())

@@ -61,7 +61,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Page<ReviewResponse> getAllReviews(Pageable pageable) {
+    public Page<ReviewResponse> getAllReviews(Integer bookId, Pageable pageable) {
+        if (bookId != null) {
+            return reviewRepository.findByBookId(bookId, pageable)
+                    .map(reviewMapper::toReviewResponse);
+        }
         return reviewRepository.findAll(pageable)
                 .map(reviewMapper::toReviewResponse);
     }
