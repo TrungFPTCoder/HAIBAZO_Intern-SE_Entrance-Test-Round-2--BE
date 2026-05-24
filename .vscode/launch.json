@@ -1,0 +1,12 @@
+{
+  "args": ["--spring.profiles.active=local"],
+  "configurations": [
+    {
+      "type": "java",
+      "name": "BookreviewApplication",
+      "request": "launch",
+      "mainClass": "com.haibazo.bookreview.BookreviewApplication",
+      "projectName": "bookreview"
+    }
+  ]
+}
