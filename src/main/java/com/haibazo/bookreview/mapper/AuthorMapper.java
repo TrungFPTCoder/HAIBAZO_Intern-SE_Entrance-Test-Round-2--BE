@@ -9,6 +9,8 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface AuthorMapper {
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "books", ignore = true)
     Author toAuthor(AuthorRequest request);
 
     @Mapping(target = "booksCount", ignore = true)

@@ -9,6 +9,9 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface BookMapper {
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "author", ignore = true)
+    @Mapping(target = "reviews", ignore = true)
     Book toBook(BookRequest request);
 
     @Mapping(target = "authorId", source = "author.id")
@@ -16,5 +19,8 @@ public interface BookMapper {
     @Mapping(target = "reviewsCount", ignore = true)
     BookResponse toBookResponse(Book book);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "author", ignore = true)
+    @Mapping(target = "reviews", ignore = true)
     void updateBook(@MappingTarget Book book, BookRequest request);
 }

@@ -9,6 +9,8 @@ import com.haibazo.bookreview.entity.Review;
 
 @Mapper(componentModel = "spring")
 public interface ReviewMapper {
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "book", ignore = true)
     Review toReview(ReviewRequest request);
 
     @Mapping(target = "bookId", source = "book.id")
